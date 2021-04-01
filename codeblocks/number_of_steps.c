@@ -40,20 +40,15 @@ void next_turn(int xc, int yc, int *x_next, int *y_next)
     }
     else 
         *y_next=yc * (-1);
-    
-       
-    
 }
+
 int count_turns(int x, int y)
 {
     int xc = 0, yc = 0, x_next, y_next;
     int turns = 0;
 
-    printf("%d",turns);
     while (1)
     {
-    printf("%d",turns);
-
         next_turn(xc, yc, &x_next, &y_next);
 
         if (yc == y)
@@ -61,16 +56,12 @@ int count_turns(int x, int y)
             if (y > 0)
             {
                 if (x >= x_next && x < xc)
-                {
-                    return turns;
-                }
+                    return turns:
             }
             else
             {
                 if (x <= x_next && x >= xc)
-                {
                     return turns;
-                }
             }
         }
         else if (xc == x)
@@ -78,9 +69,7 @@ int count_turns(int x, int y)
             if (x > 0)
             {
                 if (y <= y_next && y > yc)
-                {
                     return turns;
-                }
             }
             else
             {
@@ -95,19 +84,12 @@ int count_turns(int x, int y)
     yc=y_next;
     turns++;
     }
-    
-    printf("%d",turns);
 }
 
 void main()
 {
     int x, y;
-
     printf("\nEnter the coordinates input : ");
     scanf("%d%d", &x, &y);
-
-
-
-
     printf("The number of turns taken by user to reach the destination is  %d.", count_turns(x, y));
 }
