@@ -32,6 +32,7 @@ struct node
 int max = 0, n;
 struct node *head = NULL;
 
+
 void remove_node()
 {
 
