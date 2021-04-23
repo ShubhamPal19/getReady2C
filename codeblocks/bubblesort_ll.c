@@ -13,9 +13,20 @@ struct node
 };
 
 
+
+void printlist(struct node * head)
+{
+    struct node * current;
+    current=head;
+    while (current!=NULL)
+    {
+        printf("%d  ",current->key);
+        current= current->next;
+    } 
+}
+
 void swapnode(struct node *current)
 {
-   
     struct node * temp;
 
     temp = current->next;
@@ -35,7 +46,7 @@ void swapnode(struct node *current)
     
 }
 
-void bubblesort(struct node * head,int n)
+struct node * bubblesort(struct node * head,int n)
 {
     struct node * current , *temp;
     int swap, i;
@@ -43,24 +54,27 @@ void bubblesort(struct node * head,int n)
     while (n>0)
     {
 
-      
       swap=0;
       int i;
       current=head;
       while(current->next!=NULL)
       {
-         
           if ( current->key > current->next->key)
           {
 
             if (head==current)
             {   
                 
+              head=current->next;
+              current->next=head->next;
+              current->next->previous=current;
+              head->previous=NULL;
+              head->next=current;
+              current->previous=head;
                 
             }
             else
-              swapnode(current);
-       
+             swapnode(current);
             swap=1;
             continue;
             
@@ -71,12 +85,13 @@ void bubblesort(struct node * head,int n)
 
       if (!swap)
       {
-         return;
+         return head;
       }
 
       n--;
     }
-    
+
+    return head;
 
 }
 
@@ -90,13 +105,11 @@ void insert(struct node ** head, struct node ** tail,int key )
     temp->key=key;
     if (*head==NULL)
     {
-
        *head=temp;
        *tail=temp;
 
     }
     else{
-       
         (*tail)->next=temp;
         temp->previous=(*tail);
         (*tail)= temp;
@@ -104,18 +117,6 @@ void insert(struct node ** head, struct node ** tail,int key )
    
 }
 
-void printlist(struct node * head)
-{
-    struct node * current;
-    current=head;
-    while (current!=NULL)
-
-    {
-        printf("%d  ",current->key);
-        current= current->next;
-    }
-    
-}
 
 void main()
 {
@@ -140,9 +141,7 @@ void main()
     }
     
     printlist(head);
-
-    bubblesort(head,n);
-
+    head =  bubblesort(head,n);
     printlist(head);
 
     
