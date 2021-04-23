@@ -22,7 +22,7 @@ int main()
         for (j = 0; j < i; j++)
         {
             cout<<element<< " ";
-            element=(element+1)%2;
+            element=1 - element;
 
         }
         cout<<"\n";
