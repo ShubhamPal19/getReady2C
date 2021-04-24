@@ -4,7 +4,7 @@
 #define p                             \
     printf("this is transformation"); \
     printf("\n next line");           \
-    printf("last line ");             \
+    printf("\nlast line ");           \ 
     int x = 5;
 
 void main()
@@ -12,5 +12,10 @@ void main()
 
     p;
 
-    printf("%d", x);
+    printf("\n%d", x);
+    
+    x  =  (x++);
+    printf("\n%d",x);
+
+    
 }
