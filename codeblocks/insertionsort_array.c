@@ -1,4 +1,6 @@
-
+// Take as input N, the size of array. Take N more inputs and store that in an array.
+// Write a recursive function which selection sorts the given array. 
+//     Print all the values in the sorted array.
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -46,8 +48,6 @@ void main()
     printf("\nEnter the number of  elements in array : ");
     scanf("%d",&n);
     array= (int * )malloc(4*n);
-    printf("%d",sizeof(int));
-
     printf("\nEnter the elements of array : ");
 
     for ( i = 0; i < n; i++)
