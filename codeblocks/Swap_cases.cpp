@@ -34,11 +34,9 @@ string swap_case(string str)
       ch = ch + 32;
     else
       continue;
-    cout << s << endl;
     s.push_back(ch);
   }
-  cout << "\n"
-       << s;
+ 
   return s;
 }
 
@@ -46,9 +44,9 @@ int main()
 {
 
   string str;
-  cout << ("\nEnter the string : ");
+  cout << "\nEnter the string : ";
   getline(cin, str);
-  cout << str;
+  cout << str<<endl;
   str = swap_case(str);
-  cout << str;
+  cout << str<<endl;
 }
