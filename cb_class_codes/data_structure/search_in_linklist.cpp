@@ -78,8 +78,6 @@ void insertatposition(node *&head, node *&tail, int data, int index)
         current = head;
         while (index--)
         {
-
-            cout << " heal" << endl;
             current = current->next;
         }
 
