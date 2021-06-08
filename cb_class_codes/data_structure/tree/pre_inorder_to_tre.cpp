@@ -20,15 +20,15 @@ int k = 0;
 
 node *buildtree(int pre[], int in[], int i, int j)
 {
+    cout <<i<<"  ";
     int c = i;
+   if(i>j)
+        return NULL;
     while (in[c] != pre[k])
         c++;
- 
     node *root = new node(pre[k++]);
-    if (c != i)
-        root->left = buildtree(pre, in, i, c - 1);
-    if (c != j)
-        root->right = buildtree(pre, in, c + 1, j);
+    root->left = buildtree(pre, in, i, c - 1);
+    root->right = buildtree(pre, in, c + 1, j);
     return root;
 }
 
