@@ -90,3 +90,5 @@ int main()
     cout << "\nin     ";
     printin(root);
 }
+
+//8 3 1 6 4 5 7 12 10 16 14 13 15 18 -1
