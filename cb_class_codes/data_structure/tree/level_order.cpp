@@ -49,16 +49,10 @@ void level_order(node<int> * root)
 {
 
     queue<node<int> *> level;
-
-    cout << "her"<<endl;
     level.push(root);
     level.push(NULL);
-    cout<<level.empty();
-    node<int> * x=level.front();
+     node<int> * x=level.front();
 
-    cout << x->data<<endl;
-
-    
     while (1)
     {
         x=level.front();
