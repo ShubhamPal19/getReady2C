@@ -127,7 +127,7 @@ int main()
     printpost(root);
     cout << "\npre    ";
     printpre(root);
-    cout << "\nin     ";
+    cout << "\nin     "s;
     printin(root);
 
 
