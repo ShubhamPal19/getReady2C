@@ -2,14 +2,12 @@
 #include <string>
 #include <cstdlib>
 
-
 using namespace std;
 
 class node
 {
 
 private:
-
 public:
     string key;
     int val;
@@ -30,56 +28,46 @@ class hashmap
     node **arr;
 
 public:
-
-
     int hashfunction(string key)
     {
-        int ans=0;
-        int mul=1;
-        for (int  i = 0; i < key.length(); i++)
+        int ans = 0;
+        int mul = 1;
+        for (int i = 0; i < key.length(); i++)
         {
-            ans =  ans + (key[i]%ts)*( mul%ts);
-            mul=(29*mul)%ts;
-
-
+            ans = ans + (key[i] % ts) * (mul % ts);
+            mul = (29 * mul) % ts;
         }
 
-
-        return ans%ts;
-
-        
+        return ans % ts;
     }
     void rehashing()
     {
-        node ** oldarr=arr;
-        int oldts=ts,i;
-        arr=(node **)calloc(ts*2,sizeof(node **));
-        ts=2*ts;
-        cs=0;
-        for ( i = 0; i < oldts; i++)
+        node **oldarr = arr;
+        int oldts = ts, i;
+        arr = (node **)calloc(ts * 2, sizeof(node **));
+        ts = 2 * ts;
+        cs = 0;
+        for (i = 0; i < oldts; i++)
         {
-            node * head= oldarr[i],*temp;
+            node *head = oldarr[i], *temp;
             while (head)
             {
                 int index = hashfunction(head->key);
-       
-                temp=head;
-                head=head->next;
+
+                temp = head;
+                head = head->next;
                 arr[index] = temp;
-                temp->next=NULL;
+                temp->next = NULL;
                 cs++;
-       
             }
-            
-            arr[i]=oldarr[i];
+
+            arr[i] = oldarr[i];
             if (arr[i])
             {
                 cs++;
             }
-            
         }
-        delete[]oldarr;  
-        
+        delete[] oldarr;
     }
 
     hashmap(int size = 7)
@@ -89,7 +77,7 @@ public:
         arr = (node **)calloc(size, sizeof(node **));
     }
 
-    void insert(string key,int val)
+    void insert(string key, int val)
     {
         int index = hashfunction(key);
         node *n = new node(key, val);
@@ -108,8 +96,8 @@ public:
         for (int i = 0; i < ts; i++)
         {
 
-            cout << i <<" --->" ;
-            node *head=arr[i];
+            cout << i << " --->";
+            node *head = arr[i];
             while (head != NULL)
             {
                 cout << head->key << "  ";
@@ -119,79 +107,71 @@ public:
         }
     }
 
-
-    node * search(string key)
+    node *search(string key)
     {
-        int index=hashfunction(key);
+        int index = hashfunction(key);
 
-        cout << index << " is index"<<endl;
-        node * head = arr[index];
+        cout << index << " is index" << endl;
+        node *head = arr[index];
         while (head)
         {
-            if(head->key == key)
+            if (head->key == key)
             {
                 return head;
             }
-            head=head->next;
+            head = head->next;
         }
         return NULL;
-
-
     }
 
-
-    int& operator[](string key)
+    int &operator[](string key)
     {
-        cout<<"callerfd";
-       node *head = search(key);
-       cout<<"the key is "<< key<<endl;
-       if (head==NULL)
-       {
-          int g=38;
-           insert(key, g);
-       cout<<"the key is "<< key<<endl;
-           head = search(key);
-       cout<<"the key is "<< key<<endl;
-           cout<<" in else";
-           if (head==NULL)
-           {
-               cout<<"NULL";
-           }
-           
-           return head->val;
-       }
-         
+        cout << "callerfd";
+        node *head = search(key);
+        cout << "the key is " << key << endl;
+        if (head == NULL)
+        {
+            int g = 38;
+            insert(key, g);
+            cout << "the key is " << key << endl;
+            head = search(key);
+            cout << "the key is " << key << endl;
+            cout << " in else";
+            if (head == NULL)
+            {
+                cout << "NULL";
+            }
+
+            return head->val;
+        }
+
         return head->val;
-    
     }
 };
-
-
 
 int main()
 {
     hashmap h;
 
-    h.insert("mango",1200);
-    h.insert("kiwi",1300);
-    h.insert("orange",1500);
+    h.insert("mango", 1200);
+    h.insert("kiwi", 1300);
+    h.insert("orange", 1500);
     h.print();
-    cout <<endl;
-    h.insert("jamun",2100);
-    h.insert("banana",4500);
-    h.insert("apple",200);
-    h.insert("lemon",120);
-    h.insert("tomato",400);
-    h.insert("grapes",5200);
+    cout << endl;
+    h.insert("jamun", 2100);
+    h.insert("banana", 4500);
+    h.insert("apple", 200);
+    h.insert("lemon", 120);
+    h.insert("tomato", 400);
+    h.insert("grapes", 5200);
     h.print();
-    cout <<endl;
+    cout << endl;
 
-    cout<<"vlaue of mango is "  <<  h.hashfunction("mango")<<endl;
-    cout<<"vlaue of mango is "  <<  h.hashfunction("mango")<<endl;
-    cout<<"vlaue of PAPAYA is "  <<  h.hashfunction("paPaya")<<endl;
+    cout << "vlaue of mango is " << h.hashfunction("mango") << endl;
+    cout << "vlaue of mango is " << h.hashfunction("mango") << endl;
+    cout << "vlaue of PAPAYA is " << h.hashfunction("paPaya") << endl;
 
-    h["paPaya"]=200;
-  
+    h["paPaya"] = 200;
 
     h.print();
 }
