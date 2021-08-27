@@ -30,14 +30,14 @@ int main()
     int wt[] = {10, 20, 30};
     int capacity = 50;
     int dp[100][100];
-    // for (int i = 0; i < 100; i++)
-    // {
-    //     for (int j = 0; j < 100; j++)
-    //     {
-    //         dp[i][j] = -1;
-    //     }
-    // }
-    memeset
+    for (int i = 0; i < 100; i++)
+    {
+        for (int j = 0; j < 100; j++)
+        {
+            dp[i][j] = -1;
+        }
+    }
+   
     int n = sizeof(price) / sizeof(int);
     cout << knapsack(dp, capacity, price, wt, n);
     for (int i = 0; i < 100; i++)
